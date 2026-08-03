@@ -201,6 +201,40 @@ Simpan
 </div>
 
 </section>
+  <section id="bladderDiary">
+
+<h2>🚻 Bladder Diary IC</h2>
+
+<div class="card">
+
+<label>Jam Pipis</label>
+<input type="time" id="peeTime">
+
+<label>Skala Nyeri (0-10)</label>
+<input type="range" id="peePain" min="0" max="10">
+
+<label>Urgensi (0-10)</label>
+<input type="range" id="peeUrgency" min="0" max="10">
+
+<label>Volume Urin</label>
+<select id="peeVolume">
+<option>Sedikit</option>
+<option>Sedang</option>
+<option>Banyak</option>
+</select>
+
+<label>Catatan</label>
+<textarea id="peeNote"></textarea>
+
+<button onclick="savePeeEntry()">
+💾 Simpan Pipis
+</button>
+
+</div>
+
+<div id="peeHistory"></div>
+
+</section>
 </main>
 
 <script src="js/storage.js"></script>
