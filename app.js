@@ -46,7 +46,77 @@ if(!ctx)return;
 if(peeChart){
 peeChart.destroy();
 }
+let trendChart = null;
 
+function drawTrend(labels,pain){
+
+const ctx=document.getElementById("trendChart");
+
+if(!ctx)return;
+
+if(trendChart){
+trendChart.destroy();
+}
+function showWeeklyTrend(){
+
+const keys=Object.keys(DB.peeDiary).sort().slice(-7);
+
+const labels=[];
+
+const pain=[];
+
+keys.forEach(date=>{
+
+labels.push(date.substring(5));
+
+const list=DB.peeDiary[date];
+
+const avg=list.reduce((a,b)=>a+Number(b.pain),0)/list.length;
+
+pain.push(avg.toFixed(1));
+
+});
+
+drawTrend(labels,pain);
+
+}
+  function showMonthlyTrend(){
+
+const keys=Object.keys(DB.peeDiary).sort().slice(-30);
+
+const labels=[];
+
+const pain=[];
+
+keys.forEach(date=>{
+
+labels.push(date.substring(5));
+
+const list=DB.peeDiary[date];
+
+const avg=list.reduce((a,b)=>a+Number(b.pain),0)/list.length;
+
+pain.push(avg.toFixed(1));
+
+});
+
+drawTrend(labels,pain);
+
+}
+trendChart=new Chart(ctx,{
+type:"line",
+data:{
+labels,
+datasets:[
+{
+label:"Nyeri IC",
+data:pain
+}
+]
+}
+});
+
+}
 peeChart=new Chart(ctx,{
 
 type:"line",
@@ -118,5 +188,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 renderPeeHistory();
 
 renderPeeChart();
-
+  
+showWeeklyTrend();
 });
