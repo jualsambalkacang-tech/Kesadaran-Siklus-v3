@@ -44,7 +44,45 @@ for(let day=1;day<=daysInMonth;day++){
 const cell=document.createElement("button");
 
 cell.className="calendar-day";
+const lastPeriod = DB.profile.lastPeriod;
 
+if(lastPeriod){
+
+    const lp = new Date(lastPeriod);
+
+    const current = new Date(year,month,day);
+
+    const diff = Math.floor(
+        (current-lp)/(1000*60*60*24)
+    );
+
+    const cycle =
+        ((diff % DB.profile.cycleLength)
+        + DB.profile.cycleLength)
+        % DB.profile.cycleLength + 1;
+
+    // Hari menstruasi
+    if(cycle<=DB.profile.periodLength){
+
+        cell.classList.add("period");
+
+    }
+
+    // Masa subur
+    if(cycle>=11 && cycle<=16){
+
+        cell.classList.add("fertile");
+
+    }
+
+    // Ovulasi
+    if(cycle==14){
+
+        cell.classList.add("ovulation");
+
+    }
+
+}
 cell.innerHTML=day;
 
 const dateString=
