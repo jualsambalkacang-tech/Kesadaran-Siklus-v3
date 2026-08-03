@@ -126,7 +126,10 @@ renderCalendar();
 }
 
 function openDaily(date){
-
+document.getElementById("dailySection")
+.scrollIntoView({
+behavior:"smooth"
+});
 const input=document.getElementById("dailyDate");
 
 if(input){
