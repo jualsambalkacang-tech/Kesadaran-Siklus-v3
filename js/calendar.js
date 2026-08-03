@@ -143,7 +143,17 @@ if(typeof loadDaily==="function"){
 loadDaily(date);
 
 }
+if(typeof renderPeeHistory==="function"){
+    renderPeeHistory();
+}
 
+if(typeof renderPeeChart==="function"){
+    renderPeeChart();
+}
+
+if(typeof updateDashboard==="function"){
+    updateDashboard();
+}
 }
 
 document.addEventListener("DOMContentLoaded",renderCalendar);
