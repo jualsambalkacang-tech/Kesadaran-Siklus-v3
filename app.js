@@ -24,6 +24,7 @@ saveDB();
 
 renderPeeHistory();
 renderPeeChart();
+updateDashboard();
 }
 let peeChart=null;
 
