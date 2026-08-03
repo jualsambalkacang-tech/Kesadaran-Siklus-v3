@@ -161,3 +161,31 @@ if ("serviceWorker" in navigator) {
     });
 
 }
+function saveCycleProfile(){
+
+DB.profile.lastPeriod=
+document.getElementById("lastPeriodInput").value;
+
+DB.profile.cycleLength=
+parseInt(
+document.getElementById("cycleLengthInput").value
+);
+
+DB.profile.periodLength=
+parseInt(
+document.getElementById("periodLengthInput").value
+);
+
+updateDatabase();
+
+refreshDashboard();
+
+if(typeof renderCalendar==="function"){
+
+renderCalendar();
+
+}
+
+alert("Profil siklus berhasil disimpan");
+
+}
