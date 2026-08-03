@@ -58,3 +58,6 @@ box.innerHTML+=`
 });
 
 }
+document.addEventListener("DOMContentLoaded", () => {
+    renderPeeHistory();
+});
