@@ -90,6 +90,37 @@
 </div>
 
 </section>
+  <section id="dailySection">
+
+<h2>📝 Catatan Harian</h2>
+
+<div class="card">
+
+<label>Tanggal</label>
+<input type="date" id="dailyDate">
+
+<label>Emosi</label>
+<textarea id="dailyMood"></textarea>
+
+<label>Energi (1-10)</label>
+<input type="number" id="dailyEnergy" min="1" max="10">
+
+<label>Gejala IC</label>
+<textarea id="dailyIC"></textarea>
+
+<label>Catatan Hari Ini</label>
+<textarea id="dailyNote"></textarea>
+
+<button class="primary-button"
+onclick="saveCurrentDaily()">
+
+💾 Simpan Catatan
+
+</button>
+
+</div>
+
+</section>
 <section id="quickAction">
 
 <h2>Quick Action</h2>
