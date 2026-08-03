@@ -183,6 +183,41 @@ box.innerHTML+=`
 });
 
 }
+function updateDashboard(){
+
+const date=currentDateKey();
+
+const pee=DB.peeDiary?.[date]||[];
+
+document.getElementById("todayPee").textContent=pee.length;
+
+if(pee.length){
+
+const pain=pee.reduce((a,b)=>a+Number(b.pain),0)/pee.length;
+
+const urgency=pee.reduce((a,b)=>a+Number(b.urgency),0)/pee.length;
+
+document.getElementById("todayPain").textContent=pain.toFixed(1);
+
+document.getElementById("todayUrgency").textContent=urgency.toFixed(1);
+
+}else{
+
+document.getElementById("todayPain").textContent="-";
+
+document.getElementById("todayUrgency").textContent="-";
+
+}
+
+const daily=DB.daily?.[date]||{};
+
+document.getElementById("todayMood").textContent=daily.mood||"-";
+
+document.getElementById("todayWater").textContent=daily.water||0;
+
+document.getElementById("todayBBT").textContent=daily.bbt||"-";
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
@@ -190,4 +225,6 @@ renderPeeHistory();
 renderPeeChart();
   
 showWeeklyTrend();
+
+updateDashboard();
 });
