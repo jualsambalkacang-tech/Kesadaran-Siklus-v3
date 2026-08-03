@@ -23,6 +23,61 @@ note:document.getElementById("peeNote").value
 saveDB();
 
 renderPeeHistory();
+renderPeeChart();
+}
+let peeChart=null;
+
+function renderPeeChart(){
+
+const date=currentDateKey();
+
+const data=DB.peeDiary[date]||[];
+
+const labels=data.map(x=>x.time);
+
+const pain=data.map(x=>Number(x.pain));
+
+const urgency=data.map(x=>Number(x.urgency));
+
+const ctx=document.getElementById("peeChart");
+
+if(!ctx)return;
+
+if(peeChart){
+peeChart.destroy();
+}
+
+peeChart=new Chart(ctx,{
+
+type:"line",
+
+data:{
+
+labels,
+
+datasets:[
+
+{
+
+label:"Nyeri",
+
+data:pain
+
+},
+
+{
+
+label:"Urgensi",
+
+data:urgency
+
+}
+
+]
+
+}
+
+});
 
 }
 function renderPeeHistory(){
@@ -58,6 +113,10 @@ box.innerHTML+=`
 });
 
 }
-document.addEventListener("DOMContentLoaded", () => {
-    renderPeeHistory();
+document.addEventListener("DOMContentLoaded",()=>{
+
+renderPeeHistory();
+
+renderPeeChart();
+
 });
