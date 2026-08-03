@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kesadaran Siklus v3 Premium</title>
+
+  <meta name="theme-color" content="#7A3945">
+
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/calendar.css">
+  <link rel="stylesheet" href="css/daily.css">
+  <link rel="stylesheet" href="css/ic.css">
+  <link rel="stylesheet" href="css/todo.css">
+  <link rel="stylesheet" href="css/nutrition.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>🌸 Kesadaran Siklus</h1>
+</header>
+
+<nav class="bottom-nav">
+
+<button id="navDashboard">🏠<br>Beranda</button>
+
+<button id="navCalendar">📅<br>Kalender</button>
+
+<button id="navDaily">📝<br>Catat</button>
+
+<button id="navIC">🩺<br>IC</button>
+
+<button id="navMore">☰<br>Lainnya</button>
+
+</nav>
+
+<main>
+
+<section id="dashboard">
+
+<h2>Dashboard</h2>
+
+<div class="card">
+
+<h3>Hari Siklus</h3>
+
+<p id="cycleDay">-</p>
+
+</div>
+
+<div class="card">
+
+<h3>Fase</h3>
+
+<p id="cyclePhase">-</p>
+
+</div>
+
+<div class="card">
+
+<h3>Countdown Menstruasi</h3>
+
+<p id="countdown">-</p>
+
+</div>
+
+</section>
+
+<section id="quickAction">
+
+<h2>Quick Action</h2>
+
+<div class="quick-grid">
+
+<button id="btnPee">🚽<br>Pipis</button>
+
+<button id="btnWater">💧<br>+250ml</button>
+
+<button id="btnMedicine">💊<br>Obat</button>
+
+<button id="btnBBT">🌡️<br>BBT</button>
+
+<button id="btnMood">😊<br>Mood</button>
+
+<button id="btnDaily">📝<br>Catat</button>
+
+<button id="btnFood">🍽️<br>Makan</button>
+
+<button id="btnTodo">✅<br>ToDo</button>
+
+</div>
+
+</section>
+
+<section id="todaySummary">
+
+<h2>Ringkasan Hari Ini</h2>
+
+<div class="card">
+
+<p>🚽 BAK : <span id="peeCount">0</span></p>
+
+<p>💧 Air : <span id="waterToday">0</span> ml</p>
+
+<p>💊 Obat : <span id="medicineToday">0</span></p>
+
+<p>🌡️ BBT : <span id="bbtToday">-</span></p>
+
+</div>
+
+</section>
+
+</main>
+
+<script src="js/storage.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
