@@ -189,3 +189,66 @@ renderCalendar();
 alert("Profil siklus berhasil disimpan");
 
 }
+function saveCurrentDaily(){
+
+const date=document.getElementById("dailyDate").value;
+
+if(!date){
+
+alert("Pilih tanggal terlebih dahulu");
+
+return;
+
+}
+
+saveDaily(date,{
+
+mood:document.getElementById("dailyMood").value,
+
+energy:document.getElementById("dailyEnergy").value,
+
+ic:document.getElementById("dailyIC").value,
+
+note:document.getElementById("dailyNote").value
+
+});
+
+if(typeof renderCalendar==="function"){
+
+renderCalendar();
+
+}
+
+alert("Catatan berhasil disimpan");
+
+}
+
+function loadDaily(date){
+
+const data=getDaily(date);
+
+document.getElementById("dailyDate").value=date;
+
+if(!data){
+
+document.getElementById("dailyMood").value="";
+
+document.getElementById("dailyEnergy").value="";
+
+document.getElementById("dailyIC").value="";
+
+document.getElementById("dailyNote").value="";
+
+return;
+
+}
+
+document.getElementById("dailyMood").value=data.mood||"";
+
+document.getElementById("dailyEnergy").value=data.energy||"";
+
+document.getElementById("dailyIC").value=data.ic||"";
+
+document.getElementById("dailyNote").value=data.note||"";
+
+}
