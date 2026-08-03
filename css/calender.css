@@ -49,3 +49,17 @@ color:white;
 aspect-ratio:1;
 
 }
+.calendar-day.period{
+background:#e91e63;
+color:white;
+}
+
+.calendar-day.fertile{
+background:#4caf50;
+color:white;
+}
+
+.calendar-day.ovulation{
+border:3px solid gold;
+font-weight:bold;
+}
