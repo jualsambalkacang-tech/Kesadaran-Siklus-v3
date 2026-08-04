@@ -335,3 +335,14 @@ margin-bottom:16px;
     font-size:12px;
 
 }
+main{
+    padding-bottom:90px;
+}
+
+.bottom-nav{
+    z-index:9999;
+}
+
+.bottom-nav button{
+    pointer-events:auto;
+}
