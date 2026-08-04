@@ -240,7 +240,39 @@ function showMonthlyTrend(){
 
     });
 
-    drawTrend(labels,pain);
+    const ctx = document
+    .getElementById("monthlyTrendChart")
+    .getContext("2d");
+
+if(monthlyTrendChart){
+    monthlyTrendChart.destroy();
+}
+
+monthlyTrendChart = new Chart(ctx,{
+    type:"line",
+    data:{
+        labels:labels,
+        datasets:[{
+            label:"Nyeri",
+            data:pain,
+            tension:0.3
+        }]
+    },
+    options:{
+        responsive:true,
+        plugins:{
+            legend:{
+                display:false
+            }
+        },
+        scales:{
+            y:{
+                beginAtZero:true,
+                max:10
+            }
+        }
+    }
+});
 
 }
 document.addEventListener("DOMContentLoaded",()=>{
