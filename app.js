@@ -219,6 +219,30 @@ document.getElementById("todayWater").textContent=daily.water||0;
 document.getElementById("todayBBT").textContent=daily.bbt||"-";
 
 }
+let monthlyTrendChart = null;
+
+function showMonthlyTrend(){
+
+    const keys=Object.keys(DB.peeDiary).sort().slice(-30);
+
+    const labels=[];
+    const pain=[];
+
+    keys.forEach(date=>{
+
+        labels.push(date.substring(5));
+
+        const list=DB.peeDiary[date];
+
+        const avg=list.reduce((a,b)=>a+Number(b.pain),0)/list.length;
+
+        pain.push(avg.toFixed(1));
+
+    });
+
+    drawTrend(labels,pain);
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
@@ -227,5 +251,7 @@ renderPeeChart();
   
 showWeeklyTrend();
 
+showMonthlyTrend();
+  
 updateDashboard();
 });
