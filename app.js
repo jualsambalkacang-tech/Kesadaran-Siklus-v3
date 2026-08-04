@@ -832,6 +832,54 @@ function updatePrediction(){
     }
 
 }
+function updateTriggerAnalysis(){
+
+    const box=document.getElementById("triggerResult");
+
+    const days=Object.keys(DB.daily).sort();
+
+    if(days.length<5){
+
+        box.innerHTML="Belum cukup data.";
+
+        return;
+
+    }
+
+    let lowWater=0;
+
+    let highPain=0;
+
+    days.forEach(date=>{
+
+        const daily=DB.daily[date];
+
+        const pee=DB.peeDiary?.[date]||[];
+
+        if(pee.length===0) return;
+
+        const pain=pee.reduce((a,b)=>a+Number(b.pain),0)/pee.length;
+
+        if(Number(daily.water)<1500 && pain>=6){
+
+            lowWater++;
+
+        }
+
+        if(pain>=8){
+
+            highPain++;
+
+        }
+
+    });
+
+    box.innerHTML=`
+        <p>💧 Flare saat minum kurang : ${lowWater} hari</p>
+        <p>🔥 Nyeri berat : ${highPain} hari</p>
+    `;
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
@@ -857,6 +905,8 @@ updateFlareHistory();
 showFlareChart();
 
 updatePrediction();
+
+updateTriggerAnalysis();
   
 updateDashboard();
 
