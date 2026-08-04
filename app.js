@@ -443,6 +443,112 @@ function drawHourChart(hours){
     });
 
 }
+let moodChart = null;
+
+function showMoodChart(){
+
+    const keys = Object.keys(DB.daily).sort().slice(-30);
+
+    const labels = [];
+
+    const mood = [];
+
+    const moodMap = {
+
+        "😞":1,
+
+        "😐":2,
+
+        "🙂":3,
+
+        "😊":4,
+
+        "😁":5
+
+    };
+
+    keys.forEach(date=>{
+
+        labels.push(date.substring(5));
+
+        const m = DB.daily[date].mood || "😐";
+
+        mood.push(moodMap[m] || 2);
+
+    });
+
+    drawMoodChart(labels,mood);
+
+}
+function drawMoodChart(labels,mood){
+
+    const ctx = document
+        .getElementById("moodChart")
+        .getContext("2d");
+
+    if(moodChart){
+
+        moodChart.destroy();
+
+    }
+
+    moodChart = new Chart(ctx,{
+
+        type:"line",
+
+        data:{
+
+            labels:labels,
+
+            datasets:[{
+
+                label:"Mood",
+
+                data:mood,
+
+                tension:0.3
+
+            }]
+
+        },
+
+        options:{
+
+            responsive:true,
+
+            plugins:{
+
+                legend:{
+
+                    display:false
+
+                }
+
+            },
+
+            scales:{
+
+                y:{
+
+                    min:1,
+
+                    max:5,
+
+                    ticks:{
+
+                        stepSize:1
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
@@ -454,6 +560,8 @@ showWeeklyTrend();
 showMonthlyTrend();
 
 showHourChart();
+  
+showMoodChart();
   
 updateDashboard();
 
