@@ -578,6 +578,76 @@ function showPainHeatmap(){
     });
 
 }
+let dayNightChart=null;
+
+function showDayNightChart(){
+
+    let day=0;
+
+    let night=0;
+
+    Object.values(DB.peeDiary).forEach(list=>{
+
+        list.forEach(item=>{
+
+            if(!item.time) return;
+
+            const h=Number(item.time.split(":")[0]);
+
+            if(h>=6 && h<18){
+
+                day++;
+
+            }else{
+
+                night++;
+
+            }
+
+        });
+
+    });
+
+    drawDayNight(day,night);
+
+}
+function drawDayNight(day,night){
+
+    const ctx=document
+        .getElementById("dayNightChart")
+        .getContext("2d");
+
+    if(dayNightChart){
+
+        dayNightChart.destroy();
+
+    }
+
+    dayNightChart=new Chart(ctx,{
+
+        type:"doughnut",
+
+        data:{
+
+            labels:["Siang","Malam"],
+
+            datasets:[{
+
+                data:[day,night]
+
+            }]
+
+        },
+
+        options:{
+
+            responsive:true
+
+        }
+
+    });
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
@@ -593,6 +663,8 @@ showHourChart();
 showMoodChart();
 
 showPainHeatmap();
+
+showDayNightChart();
   
 updateDashboard();
 
