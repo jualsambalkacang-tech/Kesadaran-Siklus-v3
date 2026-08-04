@@ -373,4 +373,6 @@ showMonthlyTrend();
 updateDashboard();
 
 updateStatistics();
+
+showWaterChart();
 });
