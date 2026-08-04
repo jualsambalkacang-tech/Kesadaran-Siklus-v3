@@ -34,36 +34,64 @@ function average(list,key){
 
 function showSection(id){
 
-    document
-        .querySelectorAll("main section")
-        .forEach(sec=>{
+    const pages=[
+        "dashboard",
+        "calendarSection",
+        "dailySection",
+        "quickAction",
+        "todaySummary",
+        "setupCard",
+        "bladderDiary",
+        "peeStats"
+    ];
 
-            sec.style.display="none";
+    pages.forEach(page=>{
 
-        });
+        const el=get(page);
 
-    const el=get(id);
+        if(el){
 
-    if(el){
+            el.style.display=
+                page===id ? "block" : "none";
 
-        el.style.display="block";
+        }
 
-    }
+    });
 
 }
 
 
 function initNavigation(){
 
-    get("navDashboard").onclick=()=>showSection("dashboard");
+    get("navDashboard").onclick=()=>{
 
-    get("navCalendar").onclick=()=>showSection("calendarSection");
+        showSection("dashboard");
 
-    get("navDaily").onclick=()=>showSection("dailySection");
+    };
 
-    get("navIC").onclick=()=>showSection("bladderDiary");
+    get("navCalendar").onclick=()=>{
 
-    get("navMore").onclick=()=>showSection("quickAction");
+        showSection("calendarSection");
+
+    };
+
+    get("navDaily").onclick=()=>{
+
+        showSection("dailySection");
+
+    };
+
+    get("navIC").onclick=()=>{
+
+        showSection("bladderDiary");
+
+    };
+
+    get("navMore").onclick=()=>{
+
+        showSection("quickAction");
+
+    };
 
 }
 
@@ -512,11 +540,11 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     showSection("dashboard");
 
+    updateDashboard();
+
     renderPeeHistory();
 
     renderPeeChart();
-
-    updateDashboard();
 
     updateStatistics();
 
