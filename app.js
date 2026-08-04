@@ -880,6 +880,60 @@ function updateTriggerAnalysis(){
     `;
 
 }
+function updateFoodAnalysis(){
+
+    const box=document.getElementById("foodAnalysis");
+
+    if(!DB.daily){
+
+        box.innerHTML="Belum ada data.";
+
+        return;
+
+    }
+
+    const foods={};
+
+    Object.keys(DB.daily).forEach(date=>{
+
+        const daily=DB.daily[date];
+
+        if(!daily.food) return;
+
+        daily.food
+            .split(",")
+            .map(f=>f.trim())
+            .forEach(food=>{
+
+                if(!foods[food]){
+
+                    foods[food]=0;
+
+                }
+
+                foods[food]++;
+
+            });
+
+    });
+
+    const list=Object.entries(foods)
+        .sort((a,b)=>b[1]-a[1])
+        .slice(0,5);
+
+    if(list.length===0){
+
+        box.innerHTML="Belum ada data makanan.";
+
+        return;
+
+    }
+
+    box.innerHTML=list
+        .map(x=>`<p>🍴 ${x[0]} (${x[1]}x)</p>`)
+        .join("");
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
@@ -907,6 +961,8 @@ showFlareChart();
 updatePrediction();
 
 updateTriggerAnalysis();
+
+updateFoodAnalysis();
   
 updateDashboard();
 
