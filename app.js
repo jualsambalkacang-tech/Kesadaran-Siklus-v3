@@ -311,6 +311,55 @@ function updateStatistics(){
         totalRecord ? (totalUrgency/totalRecord).toFixed(1) : "-";
 
 }
+let waterChart = null;
+
+function showWaterChart(){
+
+    const keys = Object.keys(DB.daily).sort().slice(-30);
+
+    const labels = [];
+    const water = [];
+    const bbt = [];
+
+    keys.forEach(date=>{
+
+        labels.push(date.substring(5));
+
+        water.push(Number(DB.daily[date].water || 0));
+
+        bbt.push(Number(DB.daily[date].bbt || 0));
+
+    });
+
+    const ctx = document
+        .getElementById("waterChart")
+        .getContext("2d");
+
+    if(waterChart){
+        waterChart.destroy();
+    }
+
+    waterChart = new Chart(ctx,{
+        type:"line",
+        data:{
+            labels:labels,
+            datasets:[
+                {
+                    label:"Air (ml)",
+                    data:water
+                },
+                {
+                    label:"BBT",
+                    data:bbt
+                }
+            ]
+        },
+        options:{
+            responsive:true
+        }
+    });
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
