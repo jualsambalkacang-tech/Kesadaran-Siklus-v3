@@ -691,6 +691,35 @@ function updateRiskScore(){
     }
 
 }
+function updateFlareHistory(){
+
+    const box=document.getElementById("flareHistory");
+
+    const days=Object.keys(DB.peeDiary).sort().reverse();
+
+    let html="";
+
+    days.forEach(date=>{
+
+        const list=DB.peeDiary[date];
+
+        const pain=list.reduce((a,b)=>a+Number(b.pain),0)/list.length;
+
+        const urgency=list.reduce((a,b)=>a+Number(b.urgency),0)/list.length;
+
+        const score=(pain*5)+(urgency*5)+(list.length*2);
+
+        if(score>=60){
+
+            html+=`<p>🔴 ${date} (${Math.round(score)})</p>`;
+
+        }
+
+    });
+
+    box.innerHTML=html||"Belum ada flare.";
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
@@ -710,6 +739,8 @@ showPainHeatmap();
 showDayNightChart();
 
 updateRiskScore();
+
+updateFlareHistory();
   
 updateDashboard();
 
