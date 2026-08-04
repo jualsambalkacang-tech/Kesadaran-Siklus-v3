@@ -934,6 +934,59 @@ function updateFoodAnalysis(){
         .join("");
 
 }
+function updateFlareFoodAnalysis(){
+
+    const box=document.getElementById("flareFoodAnalysis");
+
+    const foods={};
+
+    Object.keys(DB.daily||{}).forEach(date=>{
+
+        const pee=DB.peeDiary?.[date]||[];
+
+        if(pee.length===0) return;
+
+        const pain=pee.reduce((a,b)=>a+Number(b.pain),0)/pee.length;
+
+        const urgency=pee.reduce((a,b)=>a+Number(b.urgency),0)/pee.length;
+
+        const score=(pain*5)+(urgency*5)+(pee.length*2);
+
+        if(score<60) return;
+
+        const daily=DB.daily[date];
+
+        if(!daily?.food) return;
+
+        daily.food.split(",").forEach(food=>{
+
+            food=food.trim();
+
+            if(!food) return;
+
+            foods[food]=(foods[food]||0)+1;
+
+        });
+
+    });
+
+    const result=Object.entries(foods)
+        .sort((a,b)=>b[1]-a[1])
+        .slice(0,5);
+
+    if(result.length===0){
+
+        box.innerHTML="Belum ada flare yang memiliki data makanan.";
+
+        return;
+
+    }
+
+    box.innerHTML=result
+        .map(x=>`<p>⚠️ ${x[0]} (${x[1]}x)</p>`)
+        .join("");
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
@@ -963,6 +1016,8 @@ updatePrediction();
 updateTriggerAnalysis();
 
 updateFoodAnalysis();
+
+updateFlareFoodAnalysis();
   
 updateDashboard();
 
