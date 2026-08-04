@@ -783,6 +783,55 @@ function showFlareChart(){
     });
 
 }
+function updatePrediction(){
+
+    const days=Object.keys(DB.peeDiary).sort();
+
+    if(days.length<3){
+
+        document.getElementById("predictionScore").textContent="-";
+
+        document.getElementById("predictionText").textContent="Belum cukup data";
+
+        return;
+
+    }
+
+    const last=days.slice(-3);
+
+    let score=0;
+
+    last.forEach(date=>{
+
+        const list=DB.peeDiary[date];
+
+        const pain=list.reduce((a,b)=>a+Number(b.pain),0)/list.length;
+
+        const urgency=list.reduce((a,b)=>a+Number(b.urgency),0)/list.length;
+
+        score+=(pain*5)+(urgency*5)+(list.length*2);
+
+    });
+
+    score=Math.round(score/3);
+
+    document.getElementById("predictionScore").textContent=score;
+
+    if(score<30){
+
+        document.getElementById("predictionText").textContent="🟢 Risiko rendah";
+
+    }else if(score<60){
+
+        document.getElementById("predictionText").textContent="🟡 Risiko sedang";
+
+    }else{
+
+        document.getElementById("predictionText").textContent="🔴 Risiko tinggi";
+
+    }
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
@@ -806,6 +855,8 @@ updateRiskScore();
 updateFlareHistory();
 
 showFlareChart();
+
+updatePrediction();
   
 updateDashboard();
 
