@@ -720,6 +720,69 @@ function updateFlareHistory(){
     box.innerHTML=html||"Belum ada flare.";
 
 }
+function showFlareChart(){
+
+    const months={};
+
+    Object.keys(DB.peeDiary).forEach(date=>{
+
+        const list=DB.peeDiary[date];
+
+        const pain=list.reduce((a,b)=>a+Number(b.pain),0)/list.length;
+
+        const urgency=list.reduce((a,b)=>a+Number(b.urgency),0)/list.length;
+
+        const score=(pain*5)+(urgency*5)+(list.length*2);
+
+        if(score>=60){
+
+            const month=date.substring(0,7);
+
+            months[month]=(months[month]||0)+1;
+
+        }
+
+    });
+
+    const labels=Object.keys(months);
+
+    const data=Object.values(months);
+
+    const ctx=document.getElementById("flareChart").getContext("2d");
+
+    if(flareChart){
+
+        flareChart.destroy();
+
+    }
+
+    flareChart=new Chart(ctx,{
+
+        type:"bar",
+
+        data:{
+
+            labels:labels,
+
+            datasets:[{
+
+                label:"Flare",
+
+                data:data
+
+            }]
+
+        },
+
+        options:{
+
+            responsive:true
+
+        }
+
+    });
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
@@ -741,6 +804,8 @@ showDayNightChart();
 updateRiskScore();
 
 updateFlareHistory();
+
+showFlareChart();
   
 updateDashboard();
 
