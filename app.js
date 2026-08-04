@@ -549,6 +549,35 @@ function drawMoodChart(labels,mood){
     });
 
 }
+function showPainHeatmap(){
+
+    const box=document.getElementById("painHeatmap");
+
+    if(!box) return;
+
+    box.innerHTML="";
+
+    const keys=Object.keys(DB.peeDiary).sort().slice(-30);
+
+    keys.forEach(date=>{
+
+        const list=DB.peeDiary[date];
+
+        const avg=list.reduce((a,b)=>a+Number(b.pain),0)/list.length;
+
+        const cell=document.createElement("div");
+
+        cell.className="heatCell";
+
+        cell.textContent=date.substring(8);
+
+        cell.style.opacity=avg/10;
+
+        box.appendChild(cell);
+
+    });
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
@@ -562,6 +591,8 @@ showMonthlyTrend();
 showHourChart();
   
 showMoodChart();
+
+showPainHeatmap();
   
 updateDashboard();
 
