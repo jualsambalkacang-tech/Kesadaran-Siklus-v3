@@ -27,7 +27,7 @@ renderPeeChart();
 updateDashboard();
 }
 let peeChart=null;
-let peeChart = null;
+let flareChart = null;
 function renderPeeChart(){
 
 const date=currentDateKey();
@@ -722,6 +722,59 @@ function updateFlareHistory(){
 }
 function showFlareChart(){
 
+    const keys = Object.keys(DB.peeDiary).sort();
+
+    const labels = [];
+    const flare = [];
+
+    keys.forEach(date=>{
+
+        const list = DB.peeDiary[date];
+
+        const pain =
+            list.reduce((a,b)=>a+Number(b.pain),0)/list.length;
+
+        const urgency =
+            list.reduce((a,b)=>a+Number(b.urgency),0)/list.length;
+
+        const score = (pain*5)+(urgency*5)-10;
+
+        labels.push(date.substring(5));
+        flare.push(Math.max(0,Math.round(score)));
+
+    });
+
+    const ctx=document
+        .getElementById("flareChart")
+        .getContext("2d");
+
+    if(flareChart){
+        flareChart.destroy();
+    }
+
+    flareChart=new Chart(ctx,{
+        type:"bar",
+        data:{
+            labels:labels,
+            datasets:[{
+                label:"Skor Flare",
+                data:flare
+            }]
+        },
+        options:{
+            responsive:true,
+            scales:{
+                y:{
+                    beginAtZero:true,
+                    max:100
+                }
+            }
+        }
+    });
+
+}
+function showFlareChart(){
+
     const months={};
 
     Object.keys(DB.peeDiary).forEach(date=>{
@@ -1090,4 +1143,6 @@ updateDashboard();
 updateStatistics();
 
 showWaterChart();
+
+showFlareChart();
 });
