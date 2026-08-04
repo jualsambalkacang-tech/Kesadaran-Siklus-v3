@@ -648,6 +648,49 @@ function drawDayNight(day,night){
     });
 
 }
+function updateRiskScore(){
+
+    const today=new Date().toISOString().slice(0,10);
+
+    const list=DB.peeDiary?.[today]||[];
+
+    if(list.length===0){
+
+        document.getElementById("riskScore").textContent=0;
+
+        document.getElementById("riskText").textContent="Belum ada data";
+
+        return;
+
+    }
+
+    const pee=list.length;
+
+    const pain=list.reduce((a,b)=>a+Number(b.pain),0)/pee;
+
+    const urgency=list.reduce((a,b)=>a+Number(b.urgency),0)/pee;
+
+    let score=(pain*5)+(urgency*5)+(pee*2);
+
+    score=Math.min(100,Math.round(score));
+
+    document.getElementById("riskScore").textContent=score;
+
+    if(score<30){
+
+        document.getElementById("riskText").textContent="🟢 Stabil";
+
+    }else if(score<60){
+
+        document.getElementById("riskText").textContent="🟡 Sedang";
+
+    }else{
+
+        document.getElementById("riskText").textContent="🔴 Flare IC";
+
+    }
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
@@ -665,6 +708,8 @@ showMoodChart();
 showPainHeatmap();
 
 showDayNightChart();
+
+updateRiskScore();
   
 updateDashboard();
 
