@@ -1116,27 +1116,27 @@ showMonthlyTrend();
 
 showHourChart();
   
-showMoodChart();
+// showMoodChart();
 
-showPainHeatmap();
+// showPainHeatmap();
 
-showDayNightChart();
+// showDayNightChart();
 
-updateRiskScore();
+// updateRiskScore();
 
-updateFlareHistory();
+// updateFlareHistory();
 
-showFlareChart();
+// showFlareChart();
 
-updatePrediction();
+// updatePrediction();
 
-updateTriggerAnalysis();
+// updateTriggerAnalysis();
 
-updateFoodAnalysis();
+// updateFoodAnalysis();
 
-updateFlareFoodAnalysis();
+// updateFlareFoodAnalysis();
 
-updateAIInsight();
+// updateAIInsight();
   
 updateDashboard();
 
