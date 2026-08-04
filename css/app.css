@@ -310,3 +310,28 @@ margin-top:16px;
 margin-bottom:16px;
 
 }
+#painHeatmap{
+
+    display:grid;
+
+    grid-template-columns:repeat(6,1fr);
+
+    gap:8px;
+
+}
+
+.heatCell{
+
+    background:#ff4d4d;
+
+    color:#fff;
+
+    text-align:center;
+
+    border-radius:8px;
+
+    padding:10px;
+
+    font-size:12px;
+
+}
