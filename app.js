@@ -360,6 +360,35 @@ function showWaterChart(){
     });
 
 }
+let hourChart = null;
+
+function showHourChart(){
+
+    const hours = Array(24).fill(0);
+
+    Object.values(DB.peeDiary).forEach(list=>{
+
+        list.forEach(item=>{
+
+            if(item.time){
+
+                const h = Number(item.time.split(":")[0]);
+
+                if(!isNaN(h)){
+
+                    hours[h]++;
+
+                }
+
+            }
+
+        });
+
+    });
+
+    drawHourChart(hours);
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
