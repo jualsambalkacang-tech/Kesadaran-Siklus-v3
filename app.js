@@ -987,6 +987,70 @@ function updateFlareFoodAnalysis(){
         .join("");
 
 }
+function updateAIInsight(){
+
+    const box=document.getElementById("aiInsight");
+
+    const messages=[];
+
+    const days=Object.keys(DB.peeDiary||{}).sort();
+
+    if(days.length<7){
+
+        box.innerHTML="Belum cukup data.";
+
+        return;
+
+    }
+
+    let avgPain=0;
+    let totalRecord=0;
+
+    days.forEach(date=>{
+
+        const list=DB.peeDiary[date];
+
+        list.forEach(item=>{
+
+            avgPain+=Number(item.pain);
+
+            totalRecord++;
+
+        });
+
+    });
+
+    avgPain/=totalRecord;
+
+    if(avgPain>=7){
+
+        messages.push("🔴 Nyeri rata-rata masih tinggi.");
+
+    }else if(avgPain>=4){
+
+        messages.push("🟡 Nyeri sedang.");
+
+    }else{
+
+        messages.push("🟢 Nyeri relatif ringan.");
+
+    }
+
+    const flareDays=days.filter(date=>{
+
+        const list=DB.peeDiary[date];
+
+        const pain=list.reduce((a,b)=>a+Number(b.pain),0)/list.length;
+
+        return pain>=7;
+
+    });
+
+    messages.push("🚨 Hari flare: "+flareDays.length);
+
+    box.innerHTML=messages.map(x=>`<p>${x}</p>`).join("");
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
@@ -1018,6 +1082,8 @@ updateTriggerAnalysis();
 updateFoodAnalysis();
 
 updateFlareFoodAnalysis();
+
+updateAIInsight();
   
 updateDashboard();
 
