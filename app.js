@@ -322,4 +322,6 @@ showWeeklyTrend();
 showMonthlyTrend();
   
 updateDashboard();
+
+updateStatistics();
 });
