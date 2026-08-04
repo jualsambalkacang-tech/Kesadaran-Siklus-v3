@@ -275,6 +275,42 @@ monthlyTrendChart = new Chart(ctx,{
 });
 
 }
+function updateStatistics(){
+
+    const keys = Object.keys(DB.peeDiary).sort().slice(-30);
+
+    let totalPee = 0;
+    let totalPain = 0;
+    let totalUrgency = 0;
+    let totalRecord = 0;
+
+    keys.forEach(date=>{
+
+        const list = DB.peeDiary[date];
+
+        totalPee += list.length;
+
+        list.forEach(item=>{
+
+            totalPain += Number(item.pain);
+            totalUrgency += Number(item.urgency);
+            totalRecord++;
+
+        });
+
+    });
+
+    document.getElementById("statPee").textContent = totalPee;
+
+    document.getElementById("statDays").textContent = keys.length;
+
+    document.getElementById("statPain").textContent =
+        totalRecord ? (totalPain/totalRecord).toFixed(1) : "-";
+
+    document.getElementById("statUrgency").textContent =
+        totalRecord ? (totalUrgency/totalRecord).toFixed(1) : "-";
+
+}
 document.addEventListener("DOMContentLoaded",()=>{
 
 renderPeeHistory();
