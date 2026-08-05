@@ -64,16 +64,11 @@ function showSection(id){
 function initNavigation(){
 
     console.log("initNavigation jalan");
-
-    get("navCalendar").onclick=()=>{
-
-    alert("Calendar diklik");
-
-    showSection("calendarSection");
+get("navDashboard").onclick = () => {
+    console.log("Dashboard");
+    showSection("dashboard");
 
 };
-
-    };
 
     get("navCalendar").onclick=()=>{
 
