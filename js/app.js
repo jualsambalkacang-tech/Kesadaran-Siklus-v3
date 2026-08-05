@@ -64,6 +64,7 @@ function showSection(id){
 function initNavigation(){
 
     console.log("initNavigation jalan");
+    console.log(get("navCalendar"));
 get("navDashboard").onclick = () => {
     console.log("Dashboard");
     showSection("dashboard");
