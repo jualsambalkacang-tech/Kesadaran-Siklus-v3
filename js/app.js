@@ -63,7 +63,11 @@ function showSection(id){
 
 function initNavigation(){
 
+    console.log("initNavigation jalan");
+
     get("navDashboard").onclick=()=>{
+
+        console.log("Dashboard");
 
         showSection("dashboard");
 
@@ -71,11 +75,15 @@ function initNavigation(){
 
     get("navCalendar").onclick=()=>{
 
+        console.log("Calendar");
+
         showSection("calendarSection");
 
     };
 
     get("navDaily").onclick=()=>{
+
+        console.log("Daily");
 
         showSection("dailySection");
 
@@ -83,11 +91,15 @@ function initNavigation(){
 
     get("navIC").onclick=()=>{
 
+        console.log("IC");
+
         showSection("bladderDiary");
 
     };
 
     get("navMore").onclick=()=>{
+
+        console.log("More");
 
         showSection("quickAction");
 
@@ -536,9 +548,15 @@ function showHourChart(){
 
 document.addEventListener("DOMContentLoaded",()=>{
 
+    console.log("DOM Loaded");
+
     initNavigation();
 
+    console.log("Navigation OK");
+
     showSection("dashboard");
+
+    console.log("Dashboard OK");
 
     updateDashboard();
 
