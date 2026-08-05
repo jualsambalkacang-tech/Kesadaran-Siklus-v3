@@ -544,12 +544,6 @@ function showHourChart(){
 // ======================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    alert("DOMContentLoaded jalan");
-
-    initNavigation();
-
-    showSection("dashboard");
-});
 
     console.log("DOM Loaded");
 
@@ -569,11 +563,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateStatistics();
 
-    // showWeeklyTrend();
-
     showWaterChart();
 
     showHourChart();
 
 });
-
