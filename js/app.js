@@ -566,7 +566,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     updateStatistics();
 
-    showWeeklyTrend();
+    // showWeeklyTrend();
 
     showWaterChart();
 
