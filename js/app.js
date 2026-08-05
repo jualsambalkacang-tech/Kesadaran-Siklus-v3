@@ -549,7 +549,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initNavigation();
 
     showSection("dashboard");
-    ...
 });
 
     console.log("DOM Loaded");
