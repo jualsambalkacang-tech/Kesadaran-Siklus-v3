@@ -541,19 +541,12 @@ function showHourChart(){
 }
 // ======================================
 // START APP
-// ======================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    console.log("DOM Loaded");
-
     initNavigation();
 
-    console.log("Navigation OK");
-
     showSection("dashboard");
-
-    console.log("Dashboard OK");
 
     updateDashboard();
 
