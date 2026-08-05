@@ -114,7 +114,7 @@ function initNavigation(){
 
 function updateDashboard(){
 
-    const date=currentDateKey();
+    const date=currentDateKey(); 
 
     const pee=DB.peeDiary[date]||[];
 
@@ -582,3 +582,4 @@ document.addEventListener("DOMContentLoaded", () => {
     showHourChart();
 
 });
+
