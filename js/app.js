@@ -65,11 +65,13 @@ function initNavigation(){
 
     console.log("initNavigation jalan");
 
-    get("navDashboard").onclick=()=>{
+    get("navCalendar").onclick=()=>{
 
-        console.log("Dashboard");
+    alert("Calendar diklik");
 
-        showSection("dashboard");
+    showSection("calendarSection");
+
+};
 
     };
 
