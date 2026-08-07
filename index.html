@@ -10,12 +10,8 @@
   <link rel="manifest" href="manifest.json">
 
   <link rel="stylesheet" href="css/app.css">
-  <link rel="stylesheet" href="css/dashboard.css">
-  <link rel="stylesheet" href="css/calendar.css">
-  <link rel="stylesheet" href="css/daily.css">
-  <link rel="stylesheet" href="css/ic.css">
-  <link rel="stylesheet" href="css/todo.css">
-  <link rel="stylesheet" href="css/nutrition.css">
+  <link rel="stylesheet" href="css/calender.css">
+
 </head>
 
 <body>
@@ -269,6 +265,14 @@ onclick="saveCurrentDaily()">
 💾 Simpan Catatan
 
 </button>
+<h3>Riwayat Catatan</h3>
+
+<div id="dailyHistory"></div>
+<hr>
+
+<h3>📚 Riwayat Catatan</h3>
+
+<div id="dailyHistory"></div>
 
 </div>
 
@@ -409,6 +413,21 @@ Simpan
 
 <canvas id="peeChart" height="220"></canvas>
 
+</div>
+<div class="card">
+    <h3>📈 Tren Nyeri IC</h3>
+
+    <div style="display:flex;gap:10px;margin-bottom:10px;">
+        <button onclick="showWeeklyTrend()">
+            Mingguan
+        </button>
+
+        <button onclick="showMonthlyTrend()">
+            Bulanan
+        </button>
+    </div>
+
+    <canvas id="trendChart"></canvas>
 </div>
 
 </section>

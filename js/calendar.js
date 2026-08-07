@@ -82,8 +82,7 @@ if(lastPeriod){
 
     }
 
-}
-cell.innerHTML=day;
+    }
 
 const dateString=
 
@@ -94,9 +93,13 @@ String(day).padStart(2,"0");
 if(DB.daily[dateString]){
 
 cell.classList.add("has-note");
+cell.innerHTML = day + "<br><span style='color:green;font-size:10px;'>●</span>";
+
+}else{
+
+cell.innerHTML = day;
 
 }
-
 cell.onclick=()=>{
 
 openDaily(dateString);
@@ -126,6 +129,9 @@ renderCalendar();
 }
 
 function openDaily(date){
+    console.log("Tanggal =", date);
+    showSection("dailySection");
+    
 document.getElementById("dailySection")
 .scrollIntoView({
 behavior:"smooth"
@@ -154,6 +160,6 @@ if(typeof renderPeeChart==="function"){
 if(typeof updateDashboard==="function"){
     updateDashboard();
 }
-}
 
+}
 document.addEventListener("DOMContentLoaded",renderCalendar);

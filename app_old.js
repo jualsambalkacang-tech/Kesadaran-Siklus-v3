@@ -28,6 +28,7 @@ updateDashboard();
 }
 let peeChart=null;
 let flareChart = null;
+
 function renderPeeChart(){
 
 const date=currentDateKey();
@@ -47,7 +48,6 @@ if(!ctx)return;
 if(peeChart){
 peeChart.destroy();
 }
-let trendChart = null;
 
 function drawTrend(labels,pain){
 

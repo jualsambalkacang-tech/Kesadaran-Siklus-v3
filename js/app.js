@@ -159,9 +159,11 @@ function savePeeEntry(){
 
     saveDB();
 
-    renderPeeHistory();
+renderPeeHistory();
 
-    updateDashboard();
+renderPeeChart();
+
+updateDashboard();
 
 }
 
@@ -328,6 +330,7 @@ function drawTrend(days){
     });
 
 }
+
 
 
 function showWeeklyTrend(){
