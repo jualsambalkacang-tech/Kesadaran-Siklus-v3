@@ -94,6 +94,13 @@ get("navDashboard").onclick = () => {
         showSection("bladderDiary");
 
     };
+    get("navICPremium").onclick = () => {
+
+    console.log("IC Premium");
+
+    showSection("icPremium");
+
+};
 
     get("navMore").onclick=()=>{
 
@@ -269,82 +276,7 @@ function renderPeeChart(){
 // TREN NYERI
 // ======================================
 
-function drawTrend(days){
 
-    const keys=Object.keys(DB.peeDiary)
-        .sort()
-        .slice(-days);
-
-    const labels=[];
-
-    const pain=[];
-
-    keys.forEach(date=>{
-
-        labels.push(date.substring(5));
-
-        pain.push(
-
-            average(DB.peeDiary[date],"pain").toFixed(1)
-
-        );
-
-    });
-
-    const ctx=get("trendChart");
-
-    if(!ctx) return;
-
-    if(trendChart){
-
-        trendChart.destroy();
-
-    }
-
-    trendChart=new Chart(ctx,{
-
-        type:"line",
-
-        data:{
-
-            labels:labels,
-
-            datasets:[{
-
-                label:"Nyeri",
-
-                data:pain,
-
-                tension:0.3
-
-            }]
-
-        },
-
-        options:{
-
-            responsive:true
-
-        }
-
-    });
-
-}
-
-
-
-function showWeeklyTrend(){
-
-    drawTrend(7);
-
-}
-
-
-function showMonthlyTrend(){
-
-    drawTrend(30);
-
-}
 // ======================================
 // STATISTIK 30 HARI
 // ======================================
@@ -549,6 +481,8 @@ function showHourChart(){
 document.addEventListener("DOMContentLoaded", () => {
 
     initNavigation();
+
+    initIC();
 
     showSection("dashboard");
 

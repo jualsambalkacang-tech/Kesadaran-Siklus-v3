@@ -29,6 +29,10 @@
 <button id="navDaily">📝<br>Catat</button>
 
 <button id="navIC">🩺<br>IC</button>
+<button id="navICPremium">
+    🌸<br>
+    IC+
+</button>
 
 <button id="navMore">☰<br>Lainnya</button>
 
@@ -277,6 +281,42 @@ onclick="saveCurrentDaily()">
 </div>
 
 </section>
+<section id="icPremium" style="display:none;">
+
+<div class="card">
+
+<h2>🌸 IC Premium</h2>
+
+<h3>Status Hari Ini</h3>
+
+<p>🔥 Flare :
+<span id="todayFlare">0</span>/10</p>
+
+<p>🍽️ Pemicu :
+<span id="todayTrigger">-</span></p>
+
+<p>📝 Catatan :</p>
+
+<div id="todayICNote">
+
+Belum ada catatan.
+
+</div>
+
+</div>
+<hr>
+
+<h3>📈 Tren Nyeri</h3>
+
+<div class="card">
+    <canvas id="trendChart"></canvas>
+
+    <div style="margin-top:10px;">
+        <button onclick="showWeeklyTrend()">7 Hari</button>
+        <button onclick="showMonthlyTrend()">30 Hari</button>
+    </div>
+</div>
+</section>
 <section id="quickAction">
 
 <h2>Quick Action</h2>
@@ -438,6 +478,7 @@ Simpan
 <script src="js/storage.js"></script>
 <script src="js/calendar.js"></script>
 <script src="js/daily.js"></script>
+<script src="js/ic.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
